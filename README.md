@@ -1,52 +1,156 @@
-# MERN Stack Capstone Project
+# Pharmacy Management System
 
-This assignment focuses on designing, developing, and deploying a comprehensive full-stack MERN application that showcases all the skills you've learned throughout the course.
+A full-stack MERN (MongoDB, Express.js, React, Node.js) application for managing pharmacies, medicines, and reservations.
 
-## Assignment Overview
+## Features
 
-You will:
-1. Plan and design a full-stack MERN application
-2. Develop a robust backend with MongoDB, Express.js, and Node.js
-3. Create an interactive frontend with React.js
-4. Implement testing across the entire application
-5. Deploy the application to production
+- **User Authentication**: Register and login as consumers, pharmacy owners, or admins
+- **Pharmacy Management**: Pharmacy owners can manage their pharmacy information
+- **Medicine Inventory**: Pharmacy owners can add and manage medicines
+- **Medicine Search**: Consumers can search and browse available medicines
+- **Reservation System**: Consumers can reserve medicines from pharmacies
+- **Role-based Access Control**: Different permissions for different user types
+
+## Project Structure
+
+```
+/
+├── Backend/          # Express.js API server
+│   ├── controllers/  # Route controllers
+│   ├── models/       # MongoDB models
+│   ├── routes/       # API routes
+│   ├── middleware/   # Custom middleware
+│   ├── utils/        # Utility functions
+│   └── server.js     # Main server file
+└── Frontend/         # React application
+    ├── src/
+    │   ├── components/  # React components
+    │   ├── pages/       # Page components
+    │   ├── hooks/       # Custom hooks
+    │   └── lib/         # Utilities and API client
+    └── public/          # Static assets
+```
+
+## Tech Stack
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB with Mongoose
+- JWT Authentication
+- bcryptjs for password hashing
+- Express Validator for input validation
+
+### Frontend
+- React 18
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Router
+- React Query (TanStack Query)
 
 ## Getting Started
 
-1. Accept the GitHub Classroom assignment
-2. Clone the repository to your local machine
-3. Follow the instructions in the `Week8-Assignment.md` file
-4. Plan, develop, and deploy your capstone project
-
-## Files Included
-
-- `Week8-Assignment.md`: Detailed assignment instructions
-
-## Requirements
-
-- Node.js (v18 or higher)
-- MongoDB (local installation or Atlas account)
+### Prerequisites
+- Node.js (v16 or higher)
+- MongoDB (local installation or MongoDB Atlas)
 - npm or yarn
-- Git and GitHub account
-- Accounts on deployment platforms (Render/Vercel/Netlify/etc.)
 
-## Project Ideas
+### Installation
 
-The `Week8-Assignment.md` file includes several project ideas, but you're encouraged to develop your own idea that demonstrates your skills and interests.
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd pharmacy-management-system
+   ```
 
-## Submission
+2. **Backend Setup**
+   ```bash
+   cd Backend
+   npm install
+   ```
 
-Your project will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+   - Copy `.env` file and update MongoDB connection string
+   - Start MongoDB service if running locally
 
-1. Commit and push your code regularly
-2. Include comprehensive documentation
-3. Deploy your application and add the live URL to your README.md
-4. Create a video demonstration and include the link in your README.md
+3. **Frontend Setup**
+   ```bash
+   cd ../Frontend
+   npm install
+   ```
 
-## Resources
+4. **Seed Database (Optional)**
+   ```bash
+   cd ../Backend
+   npm run seed
+   ```
 
-- [MongoDB Documentation](https://docs.mongodb.com/)
-- [Express.js Documentation](https://expressjs.com/)
-- [React Documentation](https://react.dev/)
-- [Node.js Documentation](https://nodejs.org/en/docs/)
-- [GitHub Classroom Guide](https://docs.github.com/en/education/manage-coursework-with-github-classroom) 
+### Running the Application
+
+1. **Start Backend**
+   ```bash
+   cd Backend
+   npm run dev
+   ```
+   Server will run on http://localhost:5000
+
+2. **Start Frontend**
+   ```bash
+   cd Frontend
+   npm run dev
+   ```
+   Application will run on http://localhost:5173
+
+## API Endpoints
+
+### Authentication
+- `POST /api/auth/register` - Register new user
+- `POST /api/auth/login` - Login user
+- `GET /api/auth/me` - Get current user
+- `PUT /api/auth/updatedetails` - Update user profile
+- `PUT /api/auth/updatepassword` - Update password
+
+### Pharmacies
+- `GET /api/pharmacies` - Get all pharmacies
+- `GET /api/pharmacies/:id` - Get pharmacy by ID
+- `POST /api/pharmacies` - Create pharmacy (Pharmacy role)
+- `PUT /api/pharmacies/:id` - Update pharmacy
+- `DELETE /api/pharmacies/:id` - Delete pharmacy
+
+### Medicines
+- `GET /api/medicines` - Get all medicines
+- `GET /api/medicines/:id` - Get medicine by ID
+- `POST /api/medicines` - Create medicine (Pharmacy role)
+- `PUT /api/medicines/:id` - Update medicine
+- `DELETE /api/medicines/:id` - Delete medicine
+
+### Reservations
+- `GET /api/reservations` - Get user reservations
+- `GET /api/reservations/:id` - Get reservation by ID
+- `POST /api/reservations` - Create reservation (Consumer role)
+- `PUT /api/reservations/:id` - Update reservation status
+- `DELETE /api/reservations/:id` - Delete reservation
+
+## User Roles
+
+1. **Consumer**: Can search medicines, make reservations
+2. **Pharmacy**: Can manage pharmacy and medicines, handle reservations
+3. **Admin**: Full access to all features
+
+## Default Users (after seeding)
+
+- **Admin**: admin@pharmacy.com / admin123
+- **Pharmacy**: Various pharmacy emails / password123
+- **Consumer**: consumer@example.com / password123
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## License
+
+This project is licensed under the ISC License.
